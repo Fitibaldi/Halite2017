@@ -1,4 +1,5 @@
 *.log
 *.hlt
+*.class
 .data/
 classes/

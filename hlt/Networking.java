@@ -2,6 +2,7 @@ package hlt;
 
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Arrays;
 
 public class Networking {
@@ -14,33 +15,37 @@ public class Networking {
         final StringBuilder moveString = new StringBuilder();
 
         for (final Move move : moves) {
-            switch (move.getType()) {
+            try {
+                switch (move.getType()) {
                 case Noop:
                     continue;
                 case Undock:
                     moveString.append(UNDOCK_KEY)
-                            .append(" ")
-                            .append(move.getShip().getId())
-                            .append(" ");
+                              .append(" ")
+                              .append(move.getShip().getId())
+                              .append(" ");
                     break;
                 case Dock:
                     moveString.append(DOCK_KEY)
-                            .append(" ")
-                            .append(move.getShip().getId())
-                            .append(" ")
-                            .append(((DockMove) move).getDestinationId())
-                            .append(" ");
+                              .append(" ")
+                              .append(move.getShip().getId())
+                              .append(" ")
+                              .append(((DockMove) move).getDestinationId())
+                              .append(" ");
                     break;
                 case Thrust:
                     moveString.append(THRUST_KEY)
-                            .append(" ")
-                            .append(move.getShip().getId())
-                            .append(" ")
-                            .append(((ThrustMove) move).getThrust())
-                            .append(" ")
-                            .append(((ThrustMove) move).getAngle())
-                            .append(" ");
+                              .append(" ")
+                              .append(move.getShip().getId())
+                              .append(" ")
+                              .append(((ThrustMove) move).getThrust())
+                              .append(" ")
+                              .append(((ThrustMove) move).getAngle())
+                              .append(" ");
                     break;
+                }
+            } catch (Exception npe) {
+                //skip
             }
         }
         System.out.println(moveString);
@@ -59,11 +64,10 @@ public class Networking {
                     // Ignore carriage return if on windows for manual testing.
                     continue;
                 }
-                builder = builder.append((char)buffer);
+                builder = builder.append((char) buffer);
             }
             return builder.toString();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.exit(1);
             return null;
         }
@@ -72,13 +76,12 @@ public class Networking {
     public static Metadata readLineIntoMetadata() {
         return new Metadata(readLine().trim().split(" "));
     }
-    
+
     public GameMap initialize(final String botName) {
         final int myId = Integer.parseInt(readLine());
         try {
             DebugLog.initialize(new FileWriter(String.format("%d - %s.log", myId, botName)));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

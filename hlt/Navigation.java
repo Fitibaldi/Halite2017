@@ -48,8 +48,9 @@ public class Navigation {
     public static ThrustMove navigateShipTowardsTargetNoCollision(final GameMap gameMap, final Ship ship,
                                                                   final Position targetPos, final int maxThrust,
                                                                   final boolean avoidObstacles,
-                                                                  final int maxCorrections,
-                                                                  final double angularStepRad) {
+                                                                  final int maxCorrections) {
+        final double angularStepRad = Math.PI / Math.PI;
+
         ThrustMove move =
             navigateShipTowardsTarget(gameMap, ship, targetPos, maxThrust, avoidObstacles, maxCorrections,
                                       angularStepRad);

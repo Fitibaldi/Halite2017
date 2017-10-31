@@ -127,6 +127,33 @@
                   <url path="src/"/>
                </list>
             </hash>
+            <hash>
+               <url n="content-folder-url" path="nn/"/>
+               <list n="pattern-filters">
+                  <string v="+nn/NNParametersHalite.java"/>
+                  <string v="+nn/callback/"/>
+                  <string v="+nn/entity/Result.java"/>
+                  <string v="+nn/entity/Error.java"/>
+                  <string v="+nn/example/"/>
+                  <string v="+nn/exception/ZeroNeuronsException.java"/>
+                  <string v="+nn/exception/ZeroInputElementsException.java"/>
+                  <string v="+nn/exception/ZeroInputDimensionException.java"/>
+                  <string v="+nn/exception/NotSameInputOutputSizeException.java"/>
+                  <string v="+nn/parser/result/IResultParser.java"/>
+                  <string v="+nn/parser/result/BinaryResultParser.java"/>
+                  <string v="+nn/transfer/SigmoidFunction.java"/>
+                  <string v="+nn/transfer/ITransferFunction.java"/>
+                  <string v="+nn/utils/DataUtils.java"/>
+                  <string v="+nn/utils/Utils.java"/>
+                  <string v="+nn/Analyzer.java"/>
+                  <string v="+nn/HiddenLayerNeuron.java"/>
+                  <string v="+nn/Learner.java"/>
+                  <string v="+nn/NeuralNetwork.java"/>
+               </list>
+               <list n="url-path">
+                  <url path="."/>
+               </list>
+            </hash>
          </list>
          <list n="url-path"/>
       </hash>
