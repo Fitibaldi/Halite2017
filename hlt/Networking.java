@@ -3,6 +3,10 @@ package hlt;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
 import java.util.Arrays;
 
 public class Networking {
@@ -20,28 +24,13 @@ public class Networking {
                 case Noop:
                     continue;
                 case Undock:
-                    moveString.append(UNDOCK_KEY)
-                              .append(" ")
-                              .append(move.getShip().getId())
-                              .append(" ");
+                    moveString.append(UNDOCK_KEY).append(" ").append(move.getShip().getId()).append(" ");
                     break;
                 case Dock:
-                    moveString.append(DOCK_KEY)
-                              .append(" ")
-                              .append(move.getShip().getId())
-                              .append(" ")
-                              .append(((DockMove) move).getDestinationId())
-                              .append(" ");
+                    moveString.append(DOCK_KEY).append(" ").append(move.getShip().getId()).append(" ").append(((DockMove) move).getDestinationId()).append(" ");
                     break;
                 case Thrust:
-                    moveString.append(THRUST_KEY)
-                              .append(" ")
-                              .append(move.getShip().getId())
-                              .append(" ")
-                              .append(((ThrustMove) move).getThrust())
-                              .append(" ")
-                              .append(((ThrustMove) move).getAngle())
-                              .append(" ");
+                    moveString.append(THRUST_KEY).append(" ").append(move.getShip().getId()).append(" ").append(((ThrustMove) move).getThrust()).append(" ").append(((ThrustMove) move).getAngle()).append(" ");
                     break;
                 }
             } catch (Exception npe) {

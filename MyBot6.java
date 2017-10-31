@@ -17,16 +17,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyBot {
+public class MyBot6 {
 
     private static final int MAX_LOAD_PERCENTAGE = 70;
     private static final int MAX_DOCKED_SHIPS_PERCENTAGE = 90;
-    private static final int MAX_SHIPS_ATTACKING_PLANETS_PERCENTAGE = 30;
     private static int myPlayerId;
 
     public static void main(final String[] args) {
         final Networking networking = new Networking();
-        final GameMap gameMap = networking.initialize("Fitibaldi");
+        final GameMap gameMap = networking.initialize("F.vol6");
 
         final ArrayList<Move> moveList = new ArrayList<>();
         List<NNParametersHalite> nnList = new ArrayList<NNParametersHalite>();
@@ -34,8 +33,6 @@ public class MyBot {
             moveList.clear();
             gameMap.updateMap(Networking.readLineIntoMetadata());
             myPlayerId = gameMap.getMyPlayerId();
-            int nmbrShipsAttackingPlanets = 0;
-            int nmbrShipsInThrust = 0;
 
             Map<Planet, Integer> dockingPlan = new HashMap<Planet, Integer>();
 
@@ -133,35 +130,9 @@ public class MyBot {
                     //Find where to attack
                     for (Map.Entry<Double, Entity> obj : nearestObjects.entrySet()) {
                         Entity enemy = obj.getValue();
-                        
-                        if (!movementChoosen && enemy instanceof Planet 
-                            && (nmbrShipsAttackingPlanets / gameMap.getMyPlayer().getShips().size() * 100) <= MAX_SHIPS_ATTACKING_PLANETS_PERCENTAGE
-                            && enemy.getOwner() != myPlayerId) {
-                            List<Integer> dockedShips = ((Planet) enemy).getDockedShips();
-                            Ship closestShip = null;//gameMap.getAllShips().get(((Planet) enemy).getDockedShips().get(0));
-                            for (int shipId : dockedShips) {
-                                Ship enemyDockedShip = gameMap.getAllShips().get(shipId);
-                                if (enemyDockedShip.getOwner() == enemy.getOwner()) {
-                                    if (ship.getDistanceTo(enemyDockedShip) < ship.getDistanceTo(closestShip)) {
-                                        closestShip = enemyDockedShip;
-                                    }
-                                }
-                            }
-                            
-                            if (closestShip != null) {
-                                nmbrShipsAttackingPlanets++;
-                                final ThrustMove newAttackMove =
-                                        Navigation.navigateShipTowardsTarget(gameMap, ship, closestShip,
-                                                                                    Constants.MAX_SPEED, true, 45, Math.PI / 180.0);
-                                moveList.add(newAttackMove);
-                                movementChoosen = true;
-                                break;
-                            }
-                        }
 
-                        if (!movementChoosen && enemy instanceof Ship) {
+                        if (enemy instanceof Ship) {
                             if (!movementChoosen && enemy.getOwner() != myPlayerId) {
-                                nmbrShipsInThrust++;
                                 final ThrustMove newAttackMove =
                                     Navigation.navigateShipTowardsTarget(gameMap, ship, enemy,
                                                                                     Constants.MAX_SPEED, true, 45, Math.PI / 180.0);

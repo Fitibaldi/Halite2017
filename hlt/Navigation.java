@@ -45,19 +45,19 @@ public class Navigation {
         return new ThrustMove(ship, angleDeg, thrust);
     }
 
-    public static ThrustMove navigateShipTowardsTargetNoCollision(final GameMap gameMap, final Ship ship,
-                                                                  final Position targetPos, final int maxThrust,
-                                                                  final boolean avoidObstacles,
-                                                                  final int maxCorrections) {
-        final double angularStepRad = Math.PI / Math.PI;
-
-        ThrustMove move =
-            navigateShipTowardsTarget(gameMap, ship, targetPos, maxThrust, avoidObstacles, maxCorrections,
-                                      angularStepRad);
-        if (move.getThrust() < maxThrust && move.getThrust() >= 1) {
-            return new ThrustMove(move.getShip(), move.getAngle(), move.getThrust() - 1);
-        } else {
-            return move;
-        }
-    }
+//    public static ThrustMove navigateShipTowardsTargetNoCollision(final GameMap gameMap, final Ship ship,
+//                                                                  final Position targetPos, final int maxThrust,
+//                                                                  final boolean avoidObstacles,
+//                                                                  final int maxCorrections) {
+//        final double angularStepRad = Math.PI / 180.0;
+//
+//        ThrustMove move =
+//            navigateShipTowardsTarget(gameMap, ship, targetPos, maxThrust, avoidObstacles, maxCorrections,
+//                                      angularStepRad);
+//        if (move.getThrust() < maxThrust && move.getThrust() >= 1) {
+//            return new ThrustMove(move.getShip(), move.getAngle(), move.getThrust() - 1);
+//        } else {
+//            return move;
+//        }
+//    }
 }
