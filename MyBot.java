@@ -116,7 +116,7 @@ public class MyBot {
                                         if (dockingPlan.get(planet) != null) {
                                             dockingPlan.put(planet, dockingPlan.get(planet) + 1);
                                         } else {
-                                            dockingPlan.put(planet, 0);
+                                            dockingPlan.put(planet, 1);
                                         }
                                         movementChoosen = true;
                                         break;
